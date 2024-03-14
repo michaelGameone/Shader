@@ -1,0 +1,99 @@
+==========================================
+$                                        $
+$    (A) Online Educational Resources    $
+$                                        $
+==========================================   
+
+https://www.youtube.com/watch?v=qLr4FIiQYzQ
+https://learnopengl.com/Getting-started/Coordinate-Systems
+https://www.linkedin.com/advice/0/what-purpose-vertex-shader-computer-graphics-tqxac
+https://www.khronos.org/opengl/wiki/Vertex_Shader
+https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-GPU-rendering-pipeline-clipping.html
+https://en.wikibooks.org/wiki/GLSL_Programming/Vertex_Transformations
+https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html
+https://docs.unity3d.com/Manual/SL-ShaderSemantics.html
+https://docs.unity3d.com/Manual/SL-ShaderSemantics.html
+
+
+==========================================
+$                                        $
+$  (B) The whole transformation Process  $
+$                                        $
+==========================================   
+
+The whole picture of transformation taking place during the rendering process
+is shown in the following link (Title: "The global picture"):
+https://learnopengl.com/Getting-started/Coordinate-Systems
+https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-GPU-rendering-pipeline-clipping.html
+
+
+
+(1) Each graphical object (Graphical model) is defined by its vertex
+    |__ each vertice has the following attributes:
+	    - (a) local coordinates (x,y,z) 
+		- (b) normal vector
+		- (c) color
+		... etc
+
+(2) Modeling Transformation
+    |__ Each graphical object has its own "Model Matrix", which is used to transform the model from "local coordinates", 
+	    which is a reference frame to each model, to "world coordinates" which is the only one reference frame to all models in the scene
+	|__ "Model Matrix" is applied
+	
+	|__ Output: transform local coordinates to world coordinates of all vertex in the scene.
+	
+
+(3) Viewing Transformation
+    |__ Change the reference frame from "world frame" to "camera frame". Now all the coordinates need to recalculated with reference to the camera frame
+	|__ "View Matrix" is applied
+	
+	|__ Output: transform world coordinates to camera coordinates.
+	
+
+(4) Projection Transformation
+    |__ source: https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/
+    |__ This transformation converts the vertex in "Cartesian coordinates" into "homogeneous coordinates" 
+	|__ After transforming into "homogeneous coordinates, the object far away from camera will appear smaller than the object near the camera
+	|__ The vertex inside the "viewing frustum" is said to be within the "clip space", while those outside the "clip space" will be thrown away.
+	|__ "Projection Matrix" is applied
+	    |__ it can be "perspective projection matrix" or "orthographic projection matrix"
+	
+	|__ Output: "camera coordinates" convert into "homogeneous coordinates", and create "Homogeneous clip space" that contains all the vertex valid for rendering.
+	
+(5) Normalization
+    |__ all points that are within the "clipping space" will be "normalized" within the range -1 to 1 in both x and y direction	
+	
+
+    |__ Ouput: all "homogeneous coordinates" are normalized between -1 and 1 in both x and y direction
+
+	
+    
+
+
+
+==========================================
+$                                        $
+$    (C) The role of vertex shader       $
+$                                        $
+========================================== 
+The vertext shader is expected to perform the task (2) to (4)
+Namely, the following:
+(1) transform local coordinates to world coordinates of all vertex in the scene.
+(2) transform world coordinates to camera coordinates.
+(3) converting "camera coordinates"  into "homogeneous coordinates", and create "Homogeneous clip space" that contains all the vertex valid for rendering.
+
+
+Final product of vertext shader ==> outputs the vertex position in clip space in homogeneous coordinates
+
+
+
+==========================================
+$                                        $
+$    (D) The role of fragment shader     $
+$                                        $
+========================================== 
+- The Fragment Shader is a program that runs on each and every pixel
+  that object occupies on-screen, and is usually used to calculate and output the color of each pixel. 
+  Usually there are millions of pixels on the screen, and the fragment shaders are executed for all of them! 
+  
+ 

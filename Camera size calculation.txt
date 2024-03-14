@@ -1,0 +1,42 @@
+++++++++++++++++++++++++++++++++++++++++
+Orthographic Size Calculation in Unity
+++++++++++++++++++++++++++++++++++++++++
+
+(1) p = How many pixel per unit
+
+(2) y = The number of pixels we want to display horizontally
+
+(3) s = camera size  =  (how many units of vertical height will be displayed on the screen)/2
+
+(4) r = (screen height)/(screen width)
+ 
+    (screen height) = r * (screen width)
+ 
+
+(5) screen width unit = w/p
+
+(6) (y/p) = horizontal units needed to be displayed
+
+(7) vertical unit = r * (y/p)
+
+
+(8) s = (r * (y/p))/2
+
+    s = (  "The number of units displayed horizontally" * "screen height"/"screen width" ) /2
+	
+	1 = (4 * r)/2
+	
+	2 = 4r
+	
+	r = 0.5
+	
+	
+	
+
+
+
+
+
+
+
+
