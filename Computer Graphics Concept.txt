@@ -97,3 +97,21 @@ $                                        $
   Usually there are millions of pixels on the screen, and the fragment shaders are executed for all of them! 
   
  
+==========================================
+$                                        $
+$             (E) Noise                  $
+$                                        $
+==========================================
+
+(a) Perlin Noise
+Online Resource:
+|__ https://www.cs.montana.edu/courses/spring2005/525/students/Thiesen1.pdf
+|__ https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-noise/a/perlin-noise 
+|__ https://www.scratchapixel.com/lessons/procedural-generation-virtual-worlds/perlin-noise-part-2/perlin-noise.html
+|__ https://www.scratchapixel.com/index.html
+
+
+(b) Bilinear Interpolation
+|__ https://web.pdx.edu/~jduh/courses/geog493f09/Students/W6_Bilinear%20Interpolation.pdf
+|__ https://jason-chen-1992.weebly.com/home/nearest-neighbor-and-bilinear-interpolation
+|__ https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/interpolation/bilinear-filtering.html
